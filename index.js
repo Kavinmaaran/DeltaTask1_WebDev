@@ -1,6 +1,7 @@
 var element = document.getElementsByClassName("button");
 let level=1;
 const scoretag = document.getElementById("scoreSpan");
+const leveltag = document.getElementById("levelSpan");
 var s6 = document.getElementById("s6");
 var s4 = document.getElementById("s4");
 let score=0;
@@ -30,6 +31,7 @@ function levelup(level){
                     score+=l3.length;
                     level+=1;
                     scoretag.innerHTML = score;
+                    leveltag.innerHTML = level;
                     clearInterval(m)
                     levelup(level);
                 }
@@ -40,7 +42,7 @@ function levelup(level){
                         location.reload()
                 }
             }
-            else if( l2.length==l3.length){
+            else if( l2.length>l3.length){
                 alert("Game Over!!! Try Again");
                 clearInterval(m)
                 level=1
@@ -61,6 +63,7 @@ function glow() {
 
 function size4(){
     document.getElementById('s6').style.display="none"
+    document.getElementById('level').style.display="block"
     boxes = 16
     while(arr.length < boxes){
         var r = Math.floor(Math.random() * boxes);
@@ -89,6 +92,8 @@ function size4(){
     buttons.map( button => {
         button.addEventListener('click', (e) => {
             l2.push(Number(button.id))
+            var audio = new Audio('src/mixkit-arcade-game-jump-coin-216.wav');
+            audio.play();
         });
     });
     
@@ -124,6 +129,8 @@ function size6(){
     buttons.map( button => {
         button.addEventListener('click', (e) => {
             l2.push(Number(button.id))
+            var audio = new Audio('src/mixkit-arcade-game-jump-coin-216.wav');
+            audio.play();
         });
     });
 }
