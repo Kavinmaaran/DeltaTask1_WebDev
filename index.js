@@ -8,52 +8,68 @@ let l1=[];
 let l2=[];
 var buttons
 var boxes
+let arr = [];
+let l4=[]
+let l3=[]
+
 function levelup(level){
-    l1=[];
+    l1.push(arr.pop())
     l2=[];
+    l3=[];
+    for (i = 0; i < l1.length; i++) {
+        l4[i] = l1[i];
+    }
+    l4.reverse()
     sglow(level);
     m=setInterval(() => {
         if(l2.length>=1){
-            if(l2.length==l1.length){
+            if(l2.length==l3.length){
                 l2.sort()
-                l1.sort()
-                if(JSON.stringify(l1)==JSON.stringify(l2)){
-                    score+=l1.length;
+                l3.sort()
+                if(JSON.stringify(l3)==JSON.stringify(l2)){
+                    score+=l3.length;
                     level+=1;
                     scoretag.innerHTML = score;
                     clearInterval(m)
                     levelup(level);
                 }
                 else{
-                    alert("Game Over");
+                    alert("Game Over!!! Try Again");
                         clearInterval(m)
                         level=1
+                        location.reload()
                 }
+            }
+            else if( l2.length==l3.length){
+                alert("Game Over!!! Try Again");
+                clearInterval(m)
+                level=1
+                location.reload()
             }
         }
     }, 1000);
 }
 function glow() {
-    var arr = [];
-    while(arr.length < level){
-        var r = Math.floor(Math.random() * boxes);
-        if(arr.indexOf(r) === -1) arr.push(r);
-    }
-    let n = arr.pop()
-    l1.push(n)
-    element[n].classList.add("glow");
+    let q = l4.pop()
+    l3.push(q)
+    element[q].classList.add("glow");
     setTimeout(function(){
-        element[n].classList.remove("glow");
+        element[q].classList.remove("glow");
     },1000);
     return null;
 }
 
 function size4(){
+    document.getElementById('s6').style.display="none"
+    boxes = 16
+    while(arr.length < boxes){
+        var r = Math.floor(Math.random() * boxes);
+        if(arr.indexOf(r) === -1) arr.push(r);
+    }
     scoretag.innerHTML=0
     score=0
     document.getElementById("main").style.display="block";
     level=1
-    boxes = 16
     const block = document.getElementById('grid')
     block.style.gridTemplateColumns = "repeat(4,1fr)";
     var child = block.lastElementChild; 
@@ -79,11 +95,16 @@ function size4(){
 }
 
 function size6(){
+    document.getElementById('s4').style.display="none"
+    boxes = 36
+    while(arr.length < boxes){
+        var r = Math.floor(Math.random() * boxes);
+        if(arr.indexOf(r) === -1) arr.push(r);
+    }
     scoretag.innerHTML=0
     score=0
     document.getElementById("main").style.display="block";
     level=1
-    boxes = 36
     const block6 = document.getElementById('grid')
     block6.style.gridTemplateColumns = "repeat(6,1fr)";
     var child = block6.lastElementChild; 
