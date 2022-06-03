@@ -14,7 +14,7 @@ body {
     margin: 20px auto 0 auto;
     text-align: center;
 }
-#s4,#s6{
+#s4,#s6,#back{
     border: 0px solid #999;
     cursor: pointer;
     border-radius: 5px;  
@@ -65,3 +65,15 @@ body {
     font-size: 30px;
     display: none;
 }
+#back{
+    display: none;
+    font-size: 30px;
+    padding: auto;
+}
+.back{
+    margin: auto;
+    float:right;
+    padding-right: 30px;
+    text-align: center;
+}
+

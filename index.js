@@ -1,5 +1,6 @@
 var element = document.getElementsByClassName("button");
 let level=1;
+let back = document.getElementById('back')
 const scoretag = document.getElementById("scoreSpan");
 const leveltag = document.getElementById("levelSpan");
 var s6 = document.getElementById("s6");
@@ -12,6 +13,7 @@ var boxes
 let arr = [];
 let l4=[]
 let l3=[]
+var audio1 = new Audio('src/mixkit-sad-game-over-trombone-471.wav');
 
 function levelup(level){
     l1.push(arr.pop())
@@ -36,17 +38,23 @@ function levelup(level){
                     levelup(level);
                 }
                 else{
-                    alert("Game Over!!! Try Again");
-                        clearInterval(m)
-                        level=1
+                    clearInterval(m)
+                    level=1
+                    audio1.play();
+                    setTimeout(function(){
                         location.reload()
+                        alert("Game Over!!! Try Again");
+                    },3000);
                 }
             }
             else if( l2.length>l3.length){
-                alert("Game Over!!! Try Again");
                 clearInterval(m)
                 level=1
-                location.reload()
+                audio1.play();
+                setTimeout(function(){
+                    location.reload()
+                    alert("Game Over!!! Try Again");
+                },3000);
             }
         }
     }, 1000);
@@ -64,6 +72,7 @@ function glow() {
 function size4(){
     document.getElementById('s6').style.display="none"
     document.getElementById('level').style.display="block"
+    back.style.display="inline-block"
     boxes = 16
     while(arr.length < boxes){
         var r = Math.floor(Math.random() * boxes);
@@ -101,6 +110,7 @@ function size4(){
 
 function size6(){
     document.getElementById('s4').style.display="none"
+    back.style.display="inline-block"
     boxes = 36
     while(arr.length < boxes){
         var r = Math.floor(Math.random() * boxes);
@@ -149,3 +159,4 @@ function sglow(i) {
 
 s6.onclick = function() {size6()};
 s4.onclick = function() {size4()};
+back.onclick = function(){location.reload()};
